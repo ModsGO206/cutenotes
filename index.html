@@ -3,98 +3,118 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Cute Notes 🌸</title>
+<title>GitNotes</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ff8fb8">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Cute Notes">
+<meta name="apple-mobile-web-app-title" content="GitNotes">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredoka:wght@400;600;700&family=Lora:wght@400;700&family=Pacifico&family=Patrick+Hand&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#4a3548;--pink:#ff7fae;--pink2:#ffb3d1;--a:.82;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px)}
+:root{--ink:#4a3548;--pink:#ff7fae;--a:.82;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0}
-body{font-family:"Quicksand","Nunito","Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);min-height:100vh;
-  background-color:#ffe3ef;background-size:cover;background-position:center;background-attachment:fixed}
-button,input,select{font:inherit;color:inherit}
-button{cursor:pointer;border:0;background:none;transition:transform .15s,background .2s,box-shadow .2s}
-button:active{transform:scale(.94)}
-.glass{background:rgba(255,255,255,var(--a));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-radius:22px;box-shadow:0 6px 22px rgba(150,70,110,.13)}
-.ib{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.9);font-size:1.15rem;box-shadow:0 3px 10px rgba(150,70,110,.15);display:grid;place-items:center}
-.pill{padding:9px 16px;border-radius:999px;background:#fff;box-shadow:0 3px 10px rgba(150,70,110,.12);font-weight:600}
+html{background:#ffe3ef}
+body{margin:0;font-family:Quicksand,Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);min-height:100vh;touch-action:manipulation}
+#bgLayer{position:fixed;inset:0;z-index:-1;background:#ffe3ef center/cover no-repeat;transform:translateZ(0)}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;transition:transform .12s}
+button:active{transform:scale(.93)}
+.glass{background:rgba(255,255,255,var(--a));border-radius:22px;box-shadow:0 4px 16px rgba(150,70,110,.12)}
+.ib{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);font-size:1.05rem;box-shadow:0 2px 8px rgba(150,70,110,.15);display:grid;place-items:center;flex:none}
+.pill{padding:9px 16px;border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(150,70,110,.14);font-weight:600}
 .pill.pri{background:linear-gradient(135deg,#ff8fb8,#ff6fa0);color:#fff}
+.clear .glass,.clear .note{box-shadow:none}
+.clear h1,.clear #title,.clear #body,.clear .note,.clear #wt,.clear #wb,.clear .empty{text-shadow:0 0 6px #fff,0 0 12px #fff}
 
 .view{display:none;min-height:100vh;padding:calc(var(--sat) + 14px) 14px 14px;max-width:760px;margin:auto}
 .view.on{display:block}
 
 /* HOME */
 .head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.head h1{margin:0;font-size:1.65rem;font-weight:800;text-shadow:0 2px 10px #fff}
+.head h1{margin:0;font-size:1.7rem;font-weight:800;letter-spacing:-.3px;text-shadow:0 1px 8px #fff}
 .head div{display:flex;gap:8px}
-#q{width:100%;border:0;outline:0;padding:12px 18px;margin-bottom:14px}
+#q{width:100%;border:0;outline:0;padding:12px 18px;margin-bottom:14px;border-radius:22px}
 #q::placeholder{color:#4a354899}
 #grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;padding-bottom:110px}
-.note{border-radius:22px;padding:14px;min-height:140px;max-height:190px;overflow:hidden;cursor:pointer;position:relative;
+.note{border-radius:22px;padding:14px 14px 28px;height:170px;overflow:hidden;cursor:pointer;position:relative;
   background-color:rgba(255,255,255,var(--a));background-size:cover;background-position:center;
-  backdrop-filter:blur(10px);box-shadow:0 6px 22px rgba(150,70,110,.13);animation:pop .3s both;transition:transform .2s}
-.note:hover{transform:translateY(-3px) rotate(-.6deg)}
+  box-shadow:0 4px 16px rgba(150,70,110,.12);content-visibility:auto;contain-intrinsic-size:170px}
+.note:active{transform:scale(.97)}
 .note b{display:block;font-size:1.02rem;margin-bottom:6px;text-shadow:0 0 8px #fffc}
 .note p{margin:0;font-size:.85rem;line-height:1.4;opacity:.85;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 0 6px #fff9}
 .note small{position:absolute;left:14px;bottom:10px;font-size:.72rem;opacity:.7;text-shadow:0 0 6px #fff}
-@keyframes pop{from{opacity:0;transform:scale(.92) translateY(8px)}}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.95)}}
 .empty{grid-column:1/-1;text-align:center;padding:50px 20px;font-size:1.05rem}
 .empty span{display:block;font-size:2.6rem;margin-bottom:8px}
 #fab{position:fixed;right:max(18px,calc(50% - 362px));bottom:calc(var(--sab) + 20px);width:62px;height:62px;border-radius:50%;
-  background:linear-gradient(135deg,#ff8fb8,#ff6fa0);color:#fff;font-size:2rem;box-shadow:0 8px 22px rgba(255,90,150,.45);z-index:5}
+  background:linear-gradient(135deg,#ff8fb8,#ff6fa0);color:#fff;font-size:2rem;box-shadow:0 8px 20px rgba(255,90,150,.4);z-index:5}
 
 /* EDITOR */
-.top{display:flex;align-items:center;gap:8px;padding:8px;position:sticky;top:calc(var(--sat) + 8px);z-index:6;margin-bottom:10px}
+.top{display:flex;align-items:center;gap:6px;padding:8px;position:sticky;top:calc(var(--sat) + 8px);z-index:6;margin-bottom:10px}
 .top .sp{flex:1}
-.sw-t{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 14px;border-radius:999px;background:#fff;font-weight:700;box-shadow:0 3px 10px rgba(150,70,110,.12)}
-.sw-t i{width:38px;height:22px;border-radius:99px;background:#ddd;position:relative;transition:.25s}
-.sw-t i:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.25s;box-shadow:0 1px 3px #0003}
-.sw-t.on i{background:var(--pink)}.sw-t.on i:after{left:19px}
-#title{width:100%;border:0;outline:0;padding:16px 20px;margin-bottom:10px;font-size:1.6rem;font-weight:800;font-family:inherit}
+.sw-t{display:flex;align-items:center;gap:8px;padding:0 8px 0 12px;height:38px;border-radius:999px;background:#fff;font-weight:700;box-shadow:0 2px 8px rgba(150,70,110,.14);flex:none}
+.sw-t i{width:36px;height:22px;border-radius:99px;background:#d9d0d6;position:relative;transition:background .2s}
+.sw-t i:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px #0003}
+.sw-t.on i{background:var(--pink)}.sw-t.on i:after{transform:translateX(14px)}
+#title{width:100%;border:0;outline:0;padding:16px 20px;margin-bottom:10px;font-size:1.6rem;font-weight:800;font-family:inherit;color:var(--ink);border-radius:22px}
 #title::placeholder{color:#4a354877}
 #body{padding:20px;min-height:55vh;outline:0;line-height:1.7;font-size:1.05rem;word-break:break-word;margin-bottom:96px}
 #body:empty:before{content:attr(data-ph);opacity:.45}
-.ro #body{cursor:default}
 #dock{position:fixed;left:50%;bottom:calc(var(--sab) + 12px);transform:translateX(-50%);width:min(736px,calc(100% - 20px));
-  display:flex;gap:6px;align-items:center;padding:8px;overflow-x:auto;z-index:7;transition:transform .3s,opacity .3s;scrollbar-width:none;background:rgba(255,255,255,.92)}
+  display:flex;gap:4px;align-items:center;padding:8px;overflow-x:auto;z-index:7;transition:transform .25s,opacity .25s;scrollbar-width:none;background:rgba(255,255,255,.96);border-radius:22px;box-shadow:0 6px 20px rgba(150,70,110,.2)}
 #dock::-webkit-scrollbar{display:none}
 #dock.hide{transform:translate(-50%,140%);opacity:0;pointer-events:none}
-#dock button{min-width:38px;height:38px;border-radius:12px;background:#fff0;font-size:1rem;flex:none}
-#dock button:hover{background:#ffe3ef}
-#dock select{height:38px;border:0;border-radius:12px;background:#fff0;padding:0 6px;flex:none;outline:0}
-#dock label{position:relative;min-width:38px;height:38px;border-radius:12px;display:grid;place-items:center;cursor:pointer;flex:none;font-weight:800}
-#dock label:hover{background:#ffe3ef}
+#dock button,#dock label{min-width:38px;height:38px;border-radius:12px;flex:none;display:grid;place-items:center;position:relative;font-weight:700;padding:0 6px}
+#dock button:active,#dock label:active{background:#ffe3ef}
 #dock label input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
 #dock label u{position:absolute;bottom:5px;left:9px;right:9px;height:3px;border-radius:3px}
-.sep{width:1px;height:22px;background:#4a354822;flex:none}
+.sep{width:1px;height:22px;background:#4a354822;flex:none;margin:0 2px}
+#pop,#menu{position:fixed;display:none;z-index:9;background:#fff;border-radius:20px;padding:8px;box-shadow:0 10px 30px #0003}
+#pop{left:50%;bottom:calc(var(--sab) + 76px);transform:translateX(-50%);flex-wrap:wrap;gap:6px;max-width:min(380px,92vw);justify-content:center}
+#menu{right:max(14px,calc(50% - 366px));top:calc(var(--sat) + 66px);flex-direction:column;min-width:190px}
+#pop.on,#menu.on{display:flex;animation:pop .15s}
+#pop button{padding:8px 14px;border-radius:12px;background:#fff4f8;font-size:1rem}
+#menu button{padding:12px 14px;border-radius:12px;text-align:left;font-weight:600}
+#menu button:active{background:#ffe3ef}
+
+/* WIDGET VIEW */
+#widget.on{display:flex;flex-direction:column;justify-content:center}
+#wcard{padding:26px;min-height:58vh}
+#wt{margin:0 0 12px;font-size:1.7rem;font-weight:800}
+#wb{line-height:1.7;font-size:1.1rem;word-break:break-word}
+.wbtn{position:fixed;bottom:calc(var(--sab) + 18px)}
+#wHome{left:18px}#wEdit{right:18px}
 
 /* DIALOGS */
-dialog{border:0;border-radius:26px;padding:20px;width:min(390px,92vw);color:var(--ink);box-shadow:0 20px 60px #0004;animation:pop .25s}
-dialog::backdrop{background:#2b1630aa;backdrop-filter:blur(3px)}
+dialog{border:0;border-radius:26px;padding:20px;width:min(390px,92vw);color:var(--ink);box-shadow:0 20px 60px #0004}
+dialog[open]{animation:pop .2s}
+dialog::backdrop{background:#2b1630aa}
 dialog h3{margin:0 0 12px;font-size:1.2rem}
 dialog p{font-size:.88rem;opacity:.8;margin:8px 0;line-height:1.45}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}
 .sws{display:flex;gap:8px;flex-wrap:wrap}
-.sws i{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px #0003;cursor:pointer;transition:transform .15s}
-.sws i:hover{transform:scale(1.15)}
+.sws i{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px #0003;cursor:pointer}
 .lbl{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem;margin:16px 0 4px}
 input[type=range]{width:100%;accent-color:var(--pink);height:28px}
-input[type=color]{width:42px;height:38px;border:0;border-radius:10px;padding:0;background:none;cursor:pointer}
-#toast{position:fixed;left:50%;bottom:calc(var(--sab) + 96px);transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;opacity:0;transition:.3s;pointer-events:none;z-index:20;font-weight:600}
+input[type=color]{width:42px;height:34px;border:0;border-radius:10px;padding:0;background:none;cursor:pointer}
+#toast{position:fixed;left:50%;bottom:calc(var(--sab) + 96px);transform:translate(-50%,16px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:20px;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;z-index:20;font-weight:600;max-width:88vw;text-align:center}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
 <body>
+<div id="bgLayer"></div>
 
 <!-- HOME -->
 <div id="home" class="view on">
   <div class="head">
-    <h1>🌸 Cute Notes</h1>
-    <div><button class="ib" id="bgHome" title="Background">🎨</button><button class="ib" id="cloud" title="Backup">💾</button></div>
+    <h1>GitNotes</h1>
+    <div>
+      <button class="ib" id="clrHome" title="Transparent panels">🫧</button>
+      <button class="ib" id="bgHome" title="Background">🎨</button>
+      <button class="ib" id="cloud" title="Backup">💾</button>
+    </div>
   </div>
   <input id="q" class="glass" placeholder="🔍  Search notes...">
   <div id="grid"></div>
@@ -106,13 +126,14 @@ input[type=color]{width:42px;height:38px;border:0;border-radius:10px;padding:0;b
   <div class="top glass">
     <button class="ib" id="back" title="Back">←</button>
     <span class="sp"></span>
-    <button class="sw-t on" id="edTog" title="Turn editing on/off">✏️ Edit <i></i></button>
+    <button class="sw-t on" id="edTog">✏️ Edit <i></i></button>
+    <button class="ib" id="clr" title="Transparent panels">🫧</button>
     <button class="ib" id="bgNote" title="Background">🎨</button>
-    <button class="ib" id="del" title="Delete">🗑️</button>
+    <button class="ib" id="more" title="More">⋯</button>
   </div>
   <input id="title" class="glass" placeholder="Heading ✨">
   <div id="body" class="glass" contenteditable="true" data-ph="Write something cute..."></div>
-  <div id="dock" class="glass">
+  <div id="dock">
     <button data-c="bold"><b>B</b></button>
     <button data-c="italic"><i>I</i></button>
     <button data-c="underline"><u>U</u></button>
@@ -121,17 +142,21 @@ input[type=color]{width:42px;height:38px;border:0;border-radius:10px;padding:0;b
     <button data-c="justifyLeft">⬅︎</button>
     <button data-c="justifyCenter">↔︎</button>
     <span class="sep"></span>
-    <select id="font">
-      <option value="">Font</option><option>Quicksand</option><option>Georgia</option><option>Courier New</option>
-      <option>Comic Sans MS</option><option>Trebuchet MS</option><option>Brush Script MT</option>
-    </select>
-    <select id="size">
-      <option value="">Size</option><option value="2">Small</option><option value="3">Normal</option><option value="5">Big</option><option value="6">Huge</option>
-    </select>
+    <button id="fontBtn">Aa</button>
+    <button id="sizeBtn">A⁺</button>
     <span class="sep"></span>
     <label title="Text color">A<u id="tcU" style="background:#4a3548"></u><input type="color" id="tc" value="#4a3548"></label>
     <label title="Highlight">🖍<u id="hcU" style="background:#fff3a3"></u><input type="color" id="hc" value="#fff3a3"></label>
   </div>
+  <div id="pop"></div>
+  <div id="menu"></div>
+</div>
+
+<!-- WIDGET VIEW -->
+<div id="widget" class="view">
+  <div id="wcard" class="glass"><h2 id="wt"></h2><div id="wb"></div></div>
+  <button class="ib wbtn" id="wHome">🏠</button>
+  <button class="ib wbtn" id="wEdit">✏️</button>
 </div>
 
 <!-- BACKGROUND -->
@@ -145,7 +170,6 @@ input[type=color]{width:42px;height:38px;border:0;border-radius:10px;padding:0;b
   </div>
   <div class="lbl"><span>Panel transparency</span><span id="aVal"></span></div>
   <input type="range" id="alpha" min="0" max="100">
-  <p>Slide left to see more of your background through the notes 👀</p>
   <input type="file" id="bgFile" accept="image/*" hidden>
   <div class="row"><button class="pill pri" id="bgClose">Done</button></div>
 </dialog>
@@ -153,9 +177,10 @@ input[type=color]{width:42px;height:38px;border:0;border-radius:10px;padding:0;b
 <!-- BACKUP -->
 <dialog id="gDlg">
   <h3>Backup 💾</h3>
-  <p>Tap Back up, then choose <b>Drive</b> (or Files, WhatsApp, email...) to keep a copy safe. To restore, pick that file again.</p>
-  <div class="row"><button class="pill pri" id="up">⬆️ Back up</button><button class="pill" id="down">⬇️ Restore</button></div>
-  <input type="file" id="impFile" accept=".json" hidden>
+  <p>Back up opens your share sheet, so pick <b>Drive</b>, Files, WhatsApp, etc. No share sheet? It downloads instead. You can also copy and paste your notes as text.</p>
+  <div class="row"><button class="pill pri" id="up">⬆️ Back up</button><button class="pill" id="down">⬇️ Restore file</button></div>
+  <div class="row"><button class="pill" id="copy">📋 Copy</button><button class="pill" id="paste">📥 Paste</button></div>
+  <input type="file" id="impFile" hidden>
   <p id="last"></p>
   <div class="row"><button class="pill" id="gClose">Close</button></div>
 </dialog>
@@ -164,84 +189,129 @@ input[type=color]{width:42px;height:38px;border:0;border-radius:10px;padding:0;b
 
 <script>
 const $=s=>document.querySelector(s);
-const KEY='cutenotes.v1';
+const KEY='cutenotes.v1'; // same key so your old notes stay
 let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
 S=S||{notes:[],homeBg:''};
-let cur=null,target='home',saved=null,tm;
+let cur=null,target='home',saved=null,tm,first=true,popKey='';
 
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Storage full! Try a smaller image 😢')}};
-function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(tm);tm=setTimeout(()=>e.classList.remove('on'),2200)}
+function toast(t,ms=2200){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(tm);tm=setTimeout(()=>e.classList.remove('on'),ms)}
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const img=v=>!v?'none':v.startsWith('data:')?`url(${v})`:v.startsWith('#')?`linear-gradient(${v},${v})`:v;
 const A=v=>v==null?.82:v;
+function applyA(a){const r=document.documentElement;r.style.setProperty('--a',a);r.classList.toggle('clear',a<.35)}
+const setLayer=v=>{$('#bgLayer').style.backgroundImage=v?img(v):'none'};
+function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));$('#'+id).classList.add('on');closePops();scrollTo(0,0)}
+const textOf=n=>{const d=document.createElement('div');d.innerHTML=n.html;return d.textContent};
 
 /* ---------- HOME ---------- */
 function renderHome(){
-  document.body.style.backgroundImage=S.homeBg?img(S.homeBg):'none';
-  $('#home').style.setProperty('--a',A(S.homeA));
+  setLayer(S.homeBg);applyA(A(S.homeA));
   const q=$('#q').value.trim().toLowerCase(),g=$('#grid');
-  const txt=n=>{const d=document.createElement('div');d.innerHTML=n.html;return d.textContent};
-  const list=[...S.notes].sort((a,b)=>b.t-a.t).filter(n=>!q||(n.title+' '+txt(n)).toLowerCase().includes(q));
+  const list=[...S.notes].sort((a,b)=>b.t-a.t).filter(n=>!q||(n.title+' '+textOf(n)).toLowerCase().includes(q));
   if(!list.length){g.innerHTML=`<div class="empty glass"><span>${q?'🔎':'🌷'}</span>${q?'Nothing found!':'No notes yet<br>Tap ＋ to make your first one'}</div>`;return}
-  g.innerHTML='';
+  const frag=document.createDocumentFragment();
   list.forEach((n,i)=>{
-    const d=document.createElement('div');d.className='note';d.style.animationDelay=i*30+'ms';
+    const d=document.createElement('div');d.className='note';
+    if(first)d.style.animation=`pop .3s ${Math.min(i,10)*30}ms both`;
     if(n.bg)d.style.backgroundImage=img(n.bg);
-    d.innerHTML=`<b>${esc(n.title||'Untitled')}</b><p>${esc(txt(n).slice(0,140))}</p><small>${new Date(n.t).toLocaleDateString(undefined,{month:'short',day:'numeric'})}</small>`;
-    d.onclick=()=>open(n.id);g.appendChild(d);
+    d.innerHTML=`<b>${esc(n.title||'Untitled')}</b><p>${esc(textOf(n).slice(0,140))}</p><small>${new Date(n.t).toLocaleDateString(undefined,{month:'short',day:'numeric'})}</small>`;
+    d.onclick=()=>open(n.id);frag.appendChild(d);
   });
+  g.replaceChildren(frag);first=false;
 }
-$('#q').oninput=renderHome;
-function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));$('#'+id).classList.add('on');scrollTo(0,0)}
+let qt;$('#q').oninput=()=>{clearTimeout(qt);qt=setTimeout(renderHome,120)};
+function goHome(){cur=null;history.replaceState(null,'',location.pathname);renderHome();show('home')}
 
 /* ---------- EDITOR ---------- */
+function use(id){cur=S.notes.find(n=>n.id===id);saved=null;return cur}
+function applyNote(){
+  setLayer(cur.bg);applyA(A(cur.a));
+  const sz=cur.fs||'',ff=cur.font||'';
+  ['#body','#wb'].forEach(s=>{$(s).style.fontFamily=ff;$(s).style.fontSize=sz});
+  ['#title','#wt'].forEach(s=>$(s).style.fontFamily=ff);
+}
 function open(id){
-  cur=S.notes.find(n=>n.id===id);
+  if(!use(id))return goHome();
   $('#title').value=cur.title;$('#body').innerHTML=cur.html;
   applyNote();setMode(!cur.ro);show('editor');
-}
-function applyNote(){
-  document.body.style.backgroundImage=cur.bg?img(cur.bg):'none';
-  $('#editor').style.setProperty('--a',A(cur.a));
 }
 function setMode(edit){
   cur.ro=!edit;
   $('#edTog').classList.toggle('on',edit);
   $('#body').contentEditable=edit;$('#title').readOnly=!edit;
   $('#dock').classList.toggle('hide',!edit);
-  $('#editor').classList.toggle('ro',!edit);
-  if(!edit){document.activeElement.blur();getSelection().removeAllRanges()}
+  if(!edit){document.activeElement&&document.activeElement.blur();getSelection().removeAllRanges()}
   save();
 }
-$('#edTog').onclick=()=>{commit();setMode(cur.ro);toast(cur.ro?'Read mode 📖':'Edit mode ✏️')};
-let st;const commit=()=>{if(!cur||cur.ro&&false)return;cur.title=$('#title').value;cur.html=$('#body').innerHTML;cur.t=Date.now();clearTimeout(st);st=setTimeout(save,250)};
-$('#title').oninput=commit;$('#body').oninput=commit;
+$('#edTog').onclick=()=>{commit(true);setMode(cur.ro);toast(cur.ro?'Read mode 📖':'Edit mode ✏️')};
+let st;
+function commit(now){
+  if(!cur)return;
+  const run=()=>{cur.title=$('#title').value;cur.html=$('#body').innerHTML;cur.t=Date.now();save()};
+  clearTimeout(st);now?run():st=setTimeout(run,300);
+}
+$('#title').oninput=()=>commit();$('#body').oninput=()=>commit();
 $('#fab').onclick=()=>{const n={id:'n'+Date.now(),title:'',html:'',bg:'',a:null,ro:false,t:Date.now()};S.notes.push(n);save();open(n.id);$('#title').focus()};
-$('#back').onclick=()=>{commit();save();cur=null;renderHome();show('home')};
-$('#del').onclick=()=>{if(confirm('Delete this note? 🥺')){S.notes=S.notes.filter(n=>n!==cur);save();cur=null;renderHome();show('home')}};
+$('#back').onclick=()=>{commit(true);goHome()};
 
-/* text tools (keep selection while using dock) */
-document.addEventListener('selectionchange',()=>{const s=getSelection();if(s.rangeCount&&$('#body').contains(s.anchorNode))saved=s.getRangeAt(0)});
+/* menus */
+function closePops(){$('#pop').classList.remove('on');$('#menu').classList.remove('on');popKey=''}
+document.addEventListener('pointerdown',e=>{if(!e.target.closest('#pop,#menu,#fontBtn,#sizeBtn,#more'))closePops()});
+function showPop(key,items){
+  if(popKey===key){closePops();return}
+  closePops();popKey=key;const p=$('#pop');p.replaceChildren();
+  items.forEach(([label,fn,style])=>{
+    const b=document.createElement('button');b.textContent=label;if(style)b.style.cssText=style;
+    b.onmousedown=e=>e.preventDefault();b.onclick=()=>{fn();closePops()};p.appendChild(b);
+  });
+  p.classList.add('on');
+}
+$('#more').onclick=()=>{
+  if($('#menu').classList.contains('on')){closePops();return}
+  closePops();const m=$('#menu');m.replaceChildren();
+  [['📌 Widget view',()=>openWidget(cur.id,true)],['🗑️ Delete note',()=>{if(confirm('Delete this note? 🥺')){S.notes=S.notes.filter(n=>n!==cur);save();goHome()}}]]
+  .forEach(([l,f])=>{const b=document.createElement('button');b.textContent=l;b.onclick=()=>{closePops();f()};m.appendChild(b)});
+  m.classList.add('on');
+};
+
+/* text tools */
+document.addEventListener('selectionchange',()=>{const s=getSelection();if(s.rangeCount&&$('#body').contains(s.anchorNode))saved=s.getRangeAt(0).cloneRange()});
+const hasSel=()=>saved&&!saved.collapsed&&$('#body').contains(saved.commonAncestorContainer);
 function ex(c,v){
-  if(cur.ro)return;$('#body').focus();
+  if(!cur||cur.ro)return;
+  $('#body').focus();
   if(saved){const s=getSelection();s.removeAllRanges();s.addRange(saved)}
   document.execCommand('styleWithCSS',false,true);document.execCommand(c,false,v);commit();
 }
-document.querySelectorAll('#dock button').forEach(b=>{b.onmousedown=e=>e.preventDefault();b.onclick=()=>ex(b.dataset.c)});
-$('#font').onchange=e=>{if(e.target.value)ex('fontName',e.target.value);e.target.value=''};
-$('#size').onchange=e=>{if(e.target.value)ex('fontSize',e.target.value);e.target.value=''};
+document.querySelectorAll('#dock [data-c]').forEach(b=>{b.onmousedown=e=>e.preventDefault();b.onclick=()=>{closePops();ex(b.dataset.c)}});
+const FONTS=[['Quicksand','Quicksand,Nunito,system-ui,sans-serif'],['Fredoka','Fredoka,Quicksand,system-ui,sans-serif'],['Caveat','Caveat,"Segoe Script","Bradley Hand",cursive'],
+ ['Pacifico','Pacifico,"Brush Script MT",cursive'],['Patrick Hand','"Patrick Hand","Comic Sans MS","Chalkboard SE",cursive'],['Lora','Lora,Georgia,serif'],['Mono','"Courier New",ui-monospace,monospace']];
+const SIZES=[['Small','2','.9rem'],['Normal','3','1.05rem'],['Big','5','1.4rem'],['Huge','6','1.8rem']];
+$('#fontBtn').onmousedown=$('#sizeBtn').onmousedown=e=>e.preventDefault();
+$('#fontBtn').onclick=()=>showPop('font',FONTS.map(([n,st])=>[n,()=>{
+  if(hasSel())ex('fontName',st);else{cur.font=st;applyNote();save();toast('Whole note font changed ✨')}
+},`font-family:${st}`]));
+$('#sizeBtn').onclick=()=>showPop('size',SIZES.map(([n,v,rem])=>[n,()=>{
+  if(hasSel())ex('fontSize',v);else{cur.fs=rem;applyNote();save();toast('Whole note size changed ✨')}
+}]));
 $('#tc').oninput=e=>{$('#tcU').style.background=e.target.value;ex('foreColor',e.target.value)};
 $('#hc').oninput=e=>{$('#hcU').style.background=e.target.value;ex('hiliteColor',e.target.value)};
+
+/* ---------- TRANSPARENCY ---------- */
+function toggleClear(){
+  const home=$('#home').classList.contains('on'),o=home?S:cur,k=home?'homeA':'a',a=A(o[k]);
+  if(a>.05){o.pa=a;o[k]=0;toast('Transparent mode 🫧')}else{o[k]=o.pa||.82;toast('Panels back ✨')}
+  applyA(A(o[k]));save();
+}
+$('#clr').onclick=$('#clrHome').onclick=toggleClear;
 
 /* ---------- BACKGROUND ---------- */
 const PRESETS=['#ffe3ef','#e3f2ff','#e8ffe3','#fff6d6','#efe3ff','#ffe9dc','#ffffff',
  'linear-gradient(135deg,#ffc3e0,#c3d9ff)','linear-gradient(135deg,#ffe6a7,#ffb3c7)','linear-gradient(135deg,#c3ffe8,#c3c7ff)','linear-gradient(160deg,#2b1f3d,#6b4a8f)','linear-gradient(135deg,#ff9a9e,#fad0c4)'];
 $('#sw').innerHTML=PRESETS.map(p=>`<i data-v="${p}" style="background:${p}"></i>`).join('');
-function openBg(t){
-  target=t;const a=Math.round(A(t==='home'?S.homeA:cur.a)*100);
-  $('#alpha').value=a;$('#aVal').textContent=a+'%';$('#bgDlg').showModal();
-}
-function setBg(v){if(target==='home'){S.homeBg=v;renderHome()}else{cur.bg=v;applyNote()}save()}
+function openBg(t){target=t;const a=Math.round(A(t==='home'?S.homeA:cur.a)*100);$('#alpha').value=a;$('#aVal').textContent=a+'%';$('#bgDlg').showModal()}
+function setBg(v){if(target==='home')S.homeBg=v;else cur.bg=v;setLayer(v);save()}
 $('#sw').onclick=e=>{if(e.target.dataset.v)setBg(e.target.dataset.v)};
 $('#bgColor').oninput=e=>setBg(e.target.value);
 $('#bgClear').onclick=()=>setBg('');
@@ -250,8 +320,7 @@ $('#bgHome').onclick=()=>openBg('home');
 $('#bgNote').onclick=()=>openBg('note');
 $('#alpha').oninput=e=>{
   const a=e.target.value/100;$('#aVal').textContent=e.target.value+'%';
-  if(target==='home'){S.homeA=a;$('#home').style.setProperty('--a',a)}else{cur.a=a;$('#editor').style.setProperty('--a',a)}
-  save();
+  if(target==='home')S.homeA=a;else cur.a=a;applyA(a);save();
 };
 $('#bgImgBtn').onclick=()=>$('#bgFile').click();
 $('#bgFile').onchange=e=>{
@@ -264,29 +333,76 @@ $('#bgFile').onchange=e=>{
   im.src=URL.createObjectURL(f);e.target.value='';
 };
 
+/* ---------- WIDGET VIEW ---------- */
+function openWidget(id,push){
+  if(!use(id))return goHome();
+  $('#wt').textContent=cur.title||'Untitled';$('#wb').innerHTML=cur.html;
+  applyNote();show('widget');
+  if(push){
+    history.pushState(null,'','?w='+id);
+    try{navigator.clipboard.writeText(location.href)}catch(e){}
+    toast('Link copied 📌 Open it in your browser, then menu → Add to Home screen',4500);
+  }
+}
+$('#wHome').onclick=goHome;
+$('#wEdit').onclick=()=>{const id=cur.id;history.replaceState(null,'',location.pathname);open(id)};
+
 /* ---------- BACKUP ---------- */
-$('#cloud').onclick=()=>{$('#last').textContent=S.lastBackup?'Last backup: '+new Date(S.lastBackup).toLocaleString():'No backup yet 🥺';$('#gDlg').showModal()};
+const stamp=()=>{S.lastBackup=Date.now();save();$('#last').textContent='Last backup: just now 💖'};
+$('#cloud').onclick=()=>{commit(true);$('#last').textContent=S.lastBackup?'Last backup: '+new Date(S.lastBackup).toLocaleString():'No backup yet 🥺';$('#gDlg').showModal()};
 $('#gClose').onclick=()=>$('#gDlg').close();
 $('#up').onclick=async()=>{
-  const f=new File([JSON.stringify(S)],'cutenotes-backup.json',{type:'application/json'});
+  const data=JSON.stringify(S);
+  if(navigator.share&&navigator.canShare){
+    for(const [n,t] of [['gitnotes-backup.json','application/json'],['gitnotes-backup.txt','text/plain']]){
+      try{
+        const f=new File([data],n,{type:t});
+        if(!navigator.canShare({files:[f]}))continue;
+        await navigator.share({files:[f],title:'GitNotes backup'});stamp();return;
+      }catch(e){if(e.name==='AbortError')return}
+    }
+  }
   try{
-    if(navigator.canShare&&navigator.canShare({files:[f]}))await navigator.share({files:[f],title:'Cute Notes backup'});
-    else{const a=document.createElement('a');a.href=URL.createObjectURL(f);a.download=f.name;a.click()}
-    S.lastBackup=Date.now();save();$('#last').textContent='Last backup: just now 💖';
-  }catch(e){if(e.name!=='AbortError')toast('Oops, try again 😵')}
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+    a.download='gitnotes-backup.json';document.body.appendChild(a);a.click();a.remove();stamp();toast('Saved to your downloads 💖');
+  }catch(e){toast('Use Copy instead 📋')}
 };
+$('#copy').onclick=async()=>{
+  const data=JSON.stringify(S);
+  try{await navigator.clipboard.writeText(data)}catch(e){
+    const t=document.createElement('textarea');t.value=data;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();
+  }
+  stamp();toast('Copied! Paste it somewhere safe 📋');
+};
+function restore(txt){
+  try{
+    const d=JSON.parse(txt);if(!Array.isArray(d.notes))throw 0;
+    if(!confirm('Replace notes on this device with the backup?'))return;
+    S=d;save();renderHome();$('#gDlg').close();toast('Restored! 🌷');
+  }catch(x){toast('That backup looks wrong 😵')}
+}
 $('#down').onclick=()=>$('#impFile').click();
-$('#impFile').onchange=async e=>{
-  try{const d=JSON.parse(await e.target.files[0].text());
-    if(!Array.isArray(d.notes))throw 0;
-    if(!confirm('Replace notes on this device with the backup?')){e.target.value='';return}
-    S=d;save();renderHome();$('#gDlg').close();toast('Restored! 🌷')}
-  catch(x){toast('That file looks wrong 😵')}
-  e.target.value='';
+$('#impFile').onchange=async e=>{const f=e.target.files[0];if(f)restore(await f.text());e.target.value=''};
+$('#paste').onclick=async()=>{
+  let t='';try{t=await navigator.clipboard.readText()}catch(e){}
+  if(!t)t=prompt('Paste your backup text here:')||'';
+  if(t)restore(t);
 };
 
-renderHome();
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+/* ---------- ROUTING + START ---------- */
+function route(){
+  const p=new URLSearchParams(location.search);
+  if(p.get('new')){history.replaceState(null,'',location.pathname);$('#fab').click()}
+  else if(p.get('w')&&S.notes.some(n=>n.id===p.get('w')))openWidget(p.get('w'),false);
+  else{renderHome();show('home')}
+}
+window.addEventListener('popstate',route);
+route();
+if('serviceWorker' in navigator){
+  const had=navigator.serviceWorker.controller;let rl=false;
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!rl){rl=true;location.reload()}});
+}
 </script>
 </body>
 </html>
