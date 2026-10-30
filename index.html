@@ -108,34 +108,23 @@ small.cnt{color:var(--soft);font-weight:600;font-size:.85rem}
 #menu button{padding:12px 14px;border-radius:12px;text-align:left;font-weight:600}
 #menu button:active{background:var(--hov)}
 
-/* PAPER SKINS */
-.sk-notebook #body,.sk-notebook #wcard,.sk-lined #body,.sk-lined #wcard,.sk-grid #body,.sk-grid #wcard,.sk-dots #body,.sk-dots #wcard,
-.note.sk-notebook,.note.sk-lined,.note.sk-grid,.note.sk-dots{color:#43304a;background-color:rgba(255,254,248,var(--a))}
-.sk-notebook #body,.sk-notebook #wcard,.sk-lined #body,.sk-lined #wcard{line-height:32px;padding:32px 20px;background-attachment:local;
-  background-image:repeating-linear-gradient(transparent 0 31px,#d6e4f5 31px 32px)}
-.sk-notebook #body,.sk-notebook #wcard{padding-left:78px;border-radius:10px 24px 24px 10px;
-  background-image:
-   radial-gradient(circle at 22px 16px,#fffef8 0 6px,#9b86a6 6.5px 8px,transparent 8.5px),
-   linear-gradient(90deg,#ffd3e6 0 44px,transparent 44px),
-   linear-gradient(90deg,transparent 62px,#ffb0b0 62px 64px,transparent 64px),
-   repeating-linear-gradient(transparent 0 31px,#d6e4f5 31px 32px);
-  background-size:44px 32px,100% 100%,100% 100%,100% 32px;background-repeat:repeat-y,no-repeat,no-repeat,repeat}
-.sk-grid #body,.sk-grid #wcard,.sk-dots #body,.sk-dots #wcard{line-height:28px;padding:28px 20px;background-attachment:local;background-size:28px 28px}
-.sk-grid #body,.sk-grid #wcard{background-image:linear-gradient(#dfe9f5 1px,transparent 1px),linear-gradient(90deg,#dfe9f5 1px,transparent 1px)}
-.sk-dots #body,.sk-dots #wcard{background-image:radial-gradient(#c8bcd2 1.4px,transparent 1.7px)}
+/* PAPER SKINS (editor + widget only) */
+.sk-notebook{--pc:255,251,240;--ps:44px 32px,100% 100%,100% 100%,100% 32px;--pr:repeat-y,no-repeat,no-repeat,repeat;
+ --pi:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='32'><ellipse cx='25' cy='16' rx='6' ry='5' fill='%23eadfcb' stroke='%23d2c4aa'/><path d='M3 21C13 25 29 9 41 12' fill='none' stroke='%23857d9c' stroke-width='3.4' stroke-linecap='round'/><path d='M3 20C13 24 29 8 41 11' fill='none' stroke='%23d9d4ea' stroke-width='1.2' stroke-linecap='round'/></svg>"),linear-gradient(90deg,#f2e8d5 0 44px,transparent 44px),linear-gradient(90deg,transparent 64px,#ffc4d0 64px 65px,transparent 65px),repeating-linear-gradient(transparent 0 31px,#e8dfcc 31px 32px)}
+.sk-lined{--pc:255,254,248;--ps:100% 32px;--pr:repeat;--pi:repeating-linear-gradient(transparent 0 31px,#d6e4f5 31px 32px)}
+.sk-grid{--pc:255,254,248;--ps:28px 28px;--pr:repeat;--pi:linear-gradient(#dfe9f5 1px,transparent 1px),linear-gradient(90deg,#dfe9f5 1px,transparent 1px)}
+.sk-dots{--pc:255,254,248;--ps:28px 28px;--pr:repeat;--pi:radial-gradient(#c8bcd2 1.4px,transparent 1.7px)}
+.sk-notebook #body,.sk-notebook #wcard,.sk-notebook #title,.sk-lined #body,.sk-lined #wcard,.sk-lined #title,
+.sk-grid #body,.sk-grid #wcard,.sk-dots #body,.sk-dots #wcard{
+ background-color:rgba(var(--pc),var(--a));background-image:var(--pi);background-size:var(--ps);background-repeat:var(--pr);background-attachment:local;color:#43304a;border:0}
+.sk-notebook #title,.sk-lined #title{height:64px;line-height:32px;padding:16px 20px;margin-bottom:0;border-radius:22px 22px 0 0;font-size:1.5rem}
+.sk-notebook #title{padding-left:70px;border-radius:12px 24px 0 0}
+.sk-notebook #body,.sk-lined #body{line-height:32px;padding:0 20px 32px;border-radius:0 0 22px 22px}
+.sk-notebook #body{padding-left:70px;border-radius:0 0 24px 12px}
+.sk-notebook #wcard,.sk-lined #wcard{line-height:32px;padding:32px 20px}
+.sk-notebook #wcard{padding-left:70px;border-radius:12px 24px 24px 12px}
+.sk-grid #body,.sk-grid #wcard,.sk-dots #body,.sk-dots #wcard{line-height:28px;padding:28px 20px}
 .sk-notebook #wt,.sk-lined #wt{line-height:32px;margin:0}
-.note.sk-notebook,.note.sk-lined{background-image:repeating-linear-gradient(transparent 0 21px,#d6e4f5 21px 22px);padding-top:22px}
-.note.sk-notebook{padding-left:46px;border-radius:8px 22px 22px 8px;
-  background-image:
-   radial-gradient(circle at 15px 11px,#fffef8 0 3px,#9b86a6 3.5px 4.5px,transparent 5px),
-   linear-gradient(90deg,#ffd3e6 0 30px,transparent 30px),
-   linear-gradient(90deg,transparent 38px,#ffb0b0 38px 39px,transparent 39px),
-   repeating-linear-gradient(transparent 0 21px,#d6e4f5 21px 22px);
-  background-size:30px 22px,100% 100%,100% 100%,100% 22px;background-repeat:repeat-y,no-repeat,no-repeat,repeat}
-.note.sk-grid{background-image:linear-gradient(#dfe9f5 1px,transparent 1px),linear-gradient(90deg,#dfe9f5 1px,transparent 1px);background-size:22px 22px}
-.note.sk-dots{background-image:radial-gradient(#c8bcd2 1.2px,transparent 1.5px);background-size:22px 22px}
-.note.sk-notebook b,.note.sk-notebook p,.note.sk-lined b,.note.sk-lined p{line-height:22px;margin:0;text-shadow:none}
-.note.sk-notebook small,.note.sk-lined small,.note.sk-grid small,.note.sk-dots small{text-shadow:none}
 
 /* WIDGET VIEW */
 #widget.on{display:flex;flex-direction:column;justify-content:center}
@@ -425,16 +414,20 @@ function renderHome(){
   if(!list.length){g.innerHTML=`<div class="empty glass"><div>${q?'🔍':'🌷'}</div>${q?'Nothing found':'No notes yet<br>Tap + to make your first one'}</div>`;return}
   const frag=document.createDocumentFragment();
   list.forEach((n,i)=>{
-    const sk=skinOf(n),d=document.createElement('div');d.className='note'+(sk!=='glass'?' sk-'+sk:'')+(sel.has(n.id)?' sel':'');d.dataset.id=n.id;
+    const d=document.createElement('div');d.className='note'+(sel.has(n.id)?' sel':'');d.dataset.id=n.id;
     if(first)d.style.animation=`pop .3s ${Math.min(i,10)*30}ms both`;
-    if(sk==='glass')paint(d,n.bg,true);
+    paint(d,n.bg,true);
     d.innerHTML=`<b>${esc(n.title||'Untitled')}</b><p>${esc(textOf(n).slice(0,140))}</p><small>${new Date(n.t).toLocaleDateString(undefined,{month:'short',day:'numeric'})}</small>${n.pin?`<span class="pinI">${svg('pin',16)}</span>`:''}<span class="chk">${svg('check',16)}</span>`;
     frag.appendChild(d);
   });
   g.replaceChildren(frag);first=false;
 }
 let qt;$('#q').oninput=()=>{clearTimeout(qt);qt=setTimeout(renderHome,120)};
-function goHome(){cur=null;history.replaceState(null,'',location.pathname);renderHome();show('home')}
+function goHome(){
+  cur=null;const st=history.state;
+  if(st&&st.v==='note')history.back();else history.replaceState(null,'',location.pathname);
+  renderHome();show('home');
+}
 
 /* long-press select */
 const grid=$('#grid');let lpT,lpFired=false,sx=0,sy=0;
@@ -447,9 +440,10 @@ function syncSel(){
   $('#selPin').classList.toggle('act',picked.length>0&&picked.every(n=>n.pin));
 }
 const exitSel=()=>{selMode=false;sel.clear();syncSel()};
+const leaveSel=()=>{exitSel();if(history.state&&history.state.v==='sel')history.back()};
 grid.addEventListener('pointerdown',e=>{
   const c=e.target.closest('.note');if(!c)return;sx=e.clientX;sy=e.clientY;clearTimeout(lpT);
-  lpT=setTimeout(()=>{lpFired=true;selMode=true;sel.add(c.dataset.id);navigator.vibrate&&navigator.vibrate(18);syncSel()},420);
+  lpT=setTimeout(()=>{lpFired=true;selMode=true;sel.add(c.dataset.id);history.pushState({v:'sel'},'');navigator.vibrate&&navigator.vibrate(18);syncSel()},420);
 });
 grid.addEventListener('pointermove',e=>{if(Math.abs(e.clientX-sx)>10||Math.abs(e.clientY-sy)>10)clearTimeout(lpT)});
 ['pointerup','pointercancel','pointerleave'].forEach(t=>grid.addEventListener(t,()=>{clearTimeout(lpT);if(lpFired)setTimeout(()=>lpFired=false,60)}));
@@ -457,16 +451,16 @@ grid.addEventListener('contextmenu',e=>e.preventDefault());
 grid.addEventListener('click',e=>{
   const c=e.target.closest('.note');if(!c||lpFired)return;
   const id=c.dataset.id;
-  if(selMode){sel.has(id)?sel.delete(id):sel.add(id);if(!sel.size)selMode=false;syncSel()}else open(id);
+  if(selMode){sel.has(id)?sel.delete(id):sel.add(id);if(!sel.size){leaveSel();return}syncSel()}else open(id);
 });
-$('#selX').onclick=exitSel;
-$('#selAll').onclick=()=>{const vis=[...grid.querySelectorAll('.note')].map(e=>e.dataset.id);vis.every(i=>sel.has(i))?sel.clear():vis.forEach(i=>sel.add(i));if(!sel.size)selMode=false;syncSel()};
-$('#selPin').onclick=()=>{const p=S.notes.filter(n=>sel.has(n.id)),all=p.every(n=>n.pin);p.forEach(n=>n.pin=!all);save();exitSel();renderHome()};
+$('#selX').onclick=leaveSel;
+$('#selAll').onclick=()=>{const vis=[...grid.querySelectorAll('.note')].map(e=>e.dataset.id);vis.every(i=>sel.has(i))?sel.clear():vis.forEach(i=>sel.add(i));if(!sel.size){leaveSel();return}syncSel()};
+$('#selPin').onclick=()=>{const p=S.notes.filter(n=>sel.has(n.id)),all=p.every(n=>n.pin);p.forEach(n=>n.pin=!all);save();leaveSel();renderHome()};
 function delNotes(list){
   S.notes=S.notes.filter(n=>!list.includes(n));save();
   toast(list.length>1?`Deleted ${list.length} notes`:'Note deleted',5000,{label:'Undo',fn:()=>{S.notes.push(...list);save();renderHome()}});
 }
-$('#selDel').onclick=()=>{const p=S.notes.filter(n=>sel.has(n.id));exitSel();delNotes(p);renderHome()};
+$('#selDel').onclick=()=>{const p=S.notes.filter(n=>sel.has(n.id));leaveSel();delNotes(p);renderHome()};
 
 /* ---------- EDITOR ---------- */
 const use=id=>{cur=S.notes.find(n=>n.id===id);saved=null;return cur};
@@ -484,7 +478,9 @@ function applyNote(){
 function open(id){
   if(!use(id))return goHome();
   $('#title').value=cur.title;$('#body').innerHTML=cur.html;
-  applyNote();setMode(!cur.ro);show('editor');
+  applyNote();setMode(!cur.ro);
+  if(!(history.state&&history.state.v==='note'))history.pushState({v:'note'},'');
+  show('editor');
 }
 function setMode(edit){
   cur.ro=!edit;
@@ -647,13 +643,13 @@ function openWidget(id,push){
   $('#wt').textContent=cur.title||'Untitled';$('#wb').innerHTML=cur.html;
   applyNote();show('widget');
   if(push){
-    history.pushState(null,'','?w='+id);
+    history.replaceState({v:'note'},'','?w='+id);
     try{navigator.clipboard.writeText(location.href)}catch(e){}
     toast('Link copied. Open it in your browser, then menu > Add to Home screen',4500);
   }
 }
 $('#wHome').onclick=goHome;
-$('#wEdit').onclick=()=>{const id=cur.id;history.replaceState(null,'',location.pathname);open(id)};
+$('#wEdit').onclick=()=>{const id=cur.id;history.replaceState({v:'note'},'',location.pathname);open(id)};
 
 /* ---------- BACKUP ---------- */
 const stamp=()=>{S.lastBackup=Date.now();save();$('#last').textContent='Last backup: just now'};
@@ -664,6 +660,7 @@ $('#cloud').onclick=()=>{
 $('#gClose').onclick=()=>$('#gDlg').close();
 $('#up').onclick=async()=>{
   const data=pre||await exportJSON();
+  if(window.Android){Android.saveFile('gitnotes-backup.json',data);return}
   if(navigator.share&&navigator.canShare){
     for(const [n,t] of [['gitnotes-backup.json','application/json'],['gitnotes-backup.txt','text/plain']]){
       try{
@@ -704,11 +701,25 @@ function route(){
   const p=new URLSearchParams(location.search);
   if(p.get('new')){history.replaceState(null,'',location.pathname);$('#fab').click()}
   else if(p.get('w')&&S.notes.some(n=>n.id===p.get('w')))openWidget(p.get('w'),false);
-  else{renderHome();show('home')}
+  else{if(cur){commit(true);cur=null}renderHome();show('home')}
 }
-window.addEventListener('popstate',route);
+window.addEventListener('popstate',()=>{
+  if(selMode){exitSel();return}
+  closePops();route();
+});
+/* system back button (used by the Android app; browsers use popstate above) */
+window.handleBack=()=>{
+  const dlg=document.querySelector('dialog[open]');
+  if(dlg){dlg.close();return true}
+  if($('#pop').classList.contains('on')||$('#menu').classList.contains('on')){closePops();return true}
+  if(selMode){leaveSel();return true}
+  if(!$('#home').classList.contains('on')){if(cur)commit(true);goHome();return true}
+  if($('#q').value){$('#q').value='';renderHome();return true}
+  return false;
+};
+window.onNativeSaved=ok=>{if(ok){stamp();toast('Backup saved')}else toast('Backup cancelled')};
 route();
-if('serviceWorker' in navigator){
+if('serviceWorker' in navigator&&!window.Android){
   const had=navigator.serviceWorker.controller;let rl=false;
   navigator.serviceWorker.register('sw.js').catch(()=>{});
   navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!rl){rl=true;location.reload()}});
